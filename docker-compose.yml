@@ -1,0 +1,51 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: gems_mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "27017:27017"
+    networks:
+      - gems_network
+
+  backend:
+    build:
+      context: ./BACKEND
+    container_name: gems_backend
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      PORT: 5000
+      DB_URL: mongodb://mongodb:27017
+      DB_NAME: mern
+      JWT_KEY: docker_super_secret_key
+      FRONTEND_URL: http://localhost:3000
+    ports:
+      - "5000:5000"
+    networks:
+      - gems_network
+
+  frontend:
+    build:
+      context: ./FRONTEND
+      args:
+        REACT_APP_BACKEND_URL: http://localhost:5000/api
+    container_name: gems_frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - gems_network
+
+volumes:
+  mongo_data:
+
+networks:
+  gems_network:
+    driver: bridge
