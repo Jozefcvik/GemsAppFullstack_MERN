@@ -16,8 +16,8 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application containerized w
 ## Installation
 1. Clone the repository:
 ```sh
-git clone https://github.com/your-username/gemsapp-mern.git
-cd gemsapp-mern
+git clone git@github.com:Jozefcvik/GemsAppFullstack_MERN.git
+cd GemsAppFullstack_MERN
 ```
 
 2. Ensure BACKEND/wait-for-it.sh is present:
