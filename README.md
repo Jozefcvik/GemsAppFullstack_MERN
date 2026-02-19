@@ -52,9 +52,7 @@ docker compose up -d
 | Method | Endpoint     | Description       |
 | ------ | ------------ | ----------------- |
 | GET    | `/api/users` | Fetch all users   |
-| POST   | `/api/users` | Create a new user |
 | GET    | `/api/gems`  | Fetch all gems    |
-| POST   | `/api/gems`  | Create a new gem  |
 
 ### Example using curl:
 ```sh
@@ -63,16 +61,6 @@ curl http://localhost:5000/api/users
 
 # Get all gems
 curl http://localhost:5000/api/gems
-
-# Add a new user
-curl -X POST http://localhost:5000/api/users \
-     -H "Content-Type: application/json" \
-     -d '{"name":"Alice","email":"alice@example.com"}'
-
-# Add a new gem
-curl -X POST http://localhost:5000/api/gems \
-     -H "Content-Type: application/json" \
-     -d '{"name":"Ruby","value":5000}'
 ```
 
 ### Stop & Remove Containers
