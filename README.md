@@ -1,19 +1,25 @@
 # Gems App MERN Fullstack
 A full-stack MERN (MongoDB, Express, React, Node.js) application containerized with Docker for easy setup and deployment. This project was developed while following the Udemy course *“React, NodeJS, Express & MongoDB – The MERN Fullstack Guide (https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/)”*.
 
-## Features
+---
+
+### Features
 - REST API for users and gems.
 - React frontend fetching data from backend.
 - MongoDB database.
 - Dockerized for easy development and deployment.
 - Backend waits for MongoDB using wait-for-it.sh.
 
-## Getting Started
-### Prerequisites
+---
+
+### Getting Started
+#### Prerequisites
 - Docker
 - Docker Compose
 
-## Installation
+---
+
+### Installation
 1. Clone the repository:
 ```sh
 git clone git@github.com:Jozefcvik/GemsAppFullstack_MERN.git
@@ -38,23 +44,45 @@ docker compose up -d
 - Frontend: http://localhost:3000/
 - Backend API: http://localhost:5000/api
 
-## Docker Services
+---
+
+### Docker Services
 - **mongodb** → Database
 - **backend** → Node.js / Express API
 - **frontend** → React app with Nginx
 
-## Notes
+---
+
+### Notes
 - Backend waits for MongoDB to be ready before starting.
 - Use `.env` files in **BACKEND** and **FRONTEND** for configuration.
 
-## API Endpoints
+---
 
-| Method | Endpoint     | Description       |
-| ------ | ------------ | ----------------- |
-| GET    | `/api/users` | Fetch all users   |
-| GET    | `/api/gems`  | Fetch all gems    |
+### 🔗 Backend API Endpoints
 
-### Example using curl:
+#### Gems Endpoints
+
+| Method | Endpoint               | Description |
+|--------|-----------------------|-------------|
+| GET    | `/api/gems`           | Fetch all gems |
+| GET    | `/api/gems/reserved`  | Fetch all reserved gems |
+| GET    | `/api/gems/:id`       | Fetch a single gem by ID |
+| POST   | `/api/gems/import`    | Import initial set of gems |
+| POST   | `/api/gems`           | Create a new gem (requires auth) |
+| PUT    | `/api/gems/:id`       | Update a gem by ID (requires auth) |
+| DELETE | `/api/gems`           | Delete all gems (requires auth) |
+| DELETE | `/api/gems/:id`       | Delete a single gem by ID (requires auth) |
+
+#### Users Endpoints
+
+| Method | Endpoint           | Description |
+|--------|------------------|-------------|
+| GET    | `/api/users`      | Fetch all users |
+| POST   | `/api/users/signup` | Register a new user |
+| POST   | `/api/users/login`  | Login a user and receive JWT token |
+
+#### Example using curl:
 ```sh
 # Get all users
 curl http://localhost:5000/api/users
@@ -62,6 +90,8 @@ curl http://localhost:5000/api/users
 # Get all gems
 curl http://localhost:5000/api/gems
 ```
+
+---
 
 ### Stop & Remove Containers
 ```sh
